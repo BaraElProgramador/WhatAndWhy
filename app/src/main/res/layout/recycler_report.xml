@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="203dp" />
+
+        <TextView
+            android:id="@+id/txtInfoEmailReport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Correo@gmail.com"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Nombre:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtInfoEmailReport" />
+
+        <TextView
+            android:id="@+id/txtInfoUserReport"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Usuario"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/textView13"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="Motivo:"
+            app:layout_constraintBottom_toBottomOf="@+id/txtInfoUserReport"
+            app:layout_constraintStart_toEndOf="@+id/txtInfoUserReport"
+            app:layout_constraintTop_toTopOf="@+id/txtInfoUserReport" />
+
+        <TextView
+            android:id="@+id/txtInfoMotivoReport"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/textView20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView20"
+            app:layout_constraintTop_toTopOf="@+id/textView20" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Información extra:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/txtMoreInfoReport"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+        <ProgressBar
+            android:id="@+id/pBMoreInfoReport"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtMoreInfoReport"
+            app:layout_constraintEnd_toEndOf="@+id/txtMoreInfoReport"
+            app:layout_constraintStart_toStartOf="@+id/txtMoreInfoReport"
+            app:layout_constraintTop_toTopOf="@+id/txtMoreInfoReport" />
+
+        <ProgressBar
+            android:id="@+id/pBInfoMotivoReport"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtInfoMotivoReport"
+            app:layout_constraintEnd_toEndOf="@+id/txtInfoMotivoReport"
+            app:layout_constraintStart_toStartOf="@+id/txtInfoMotivoReport"
+            app:layout_constraintTop_toTopOf="@+id/txtInfoMotivoReport" />
+
+        <ProgressBar
+            android:id="@+id/pBInfoUserReport"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtInfoUserReport"
+            app:layout_constraintEnd_toEndOf="@+id/txtInfoUserReport"
+            app:layout_constraintStart_toStartOf="@+id/txtInfoUserReport"
+            app:layout_constraintTop_toTopOf="@+id/txtInfoUserReport" />
+
+        <ProgressBar
+            android:id="@+id/pBInfoEmailReport"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtInfoEmailReport"
+            app:layout_constraintEnd_toEndOf="@+id/txtInfoEmailReport"
+            app:layout_constraintStart_toStartOf="@+id/txtInfoEmailReport"
+            app:layout_constraintTop_toTopOf="@+id/txtInfoEmailReport" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

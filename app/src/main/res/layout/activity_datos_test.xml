@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtTitleTesData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="100dp"
+        android:text="Nombre del proyecto"
+        android:textSize="34sp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgTestData"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAutorData"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/imgReportData"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/reportsymbol" />
+
+    <ImageView
+        android:id="@+id/imgTestLike"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/imgTestData"
+        app:layout_constraintTop_toBottomOf="@+id/imgTestData"
+        app:srcCompat="@drawable/notlike" />
+
+    <TextView
+        android:id="@+id/txtAutorData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:text="Nombre del autor"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitleTesData" />
+
+    <Button
+        android:id="@+id/bDoTest"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:clickable="false"
+        android:text="Hacer test"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtMaxScore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="No se ha realizado el test"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/bDoTest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgDeleteTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+    <ImageView
+        android:id="@+id/imgEditTest"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/imgTestData"
+        app:layout_constraintTop_toBottomOf="@+id/imgTestData"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <ProgressBar
+        android:id="@+id/pBImgEditTest"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgTestData"
+        app:layout_constraintEnd_toEndOf="@+id/imgTestData"
+        app:layout_constraintStart_toStartOf="@+id/imgTestData"
+        app:layout_constraintTop_toTopOf="@+id/imgTestData" />
+
+    <ProgressBar
+        android:id="@+id/pBImgTestLike"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/imgTestLike"
+        app:layout_constraintEnd_toEndOf="@+id/imgTestLike"
+        app:layout_constraintStart_toStartOf="@+id/imgTestLike"
+        app:layout_constraintTop_toTopOf="@+id/imgTestLike" />
+
+    <ProgressBar
+        android:id="@+id/pBTxtTitleTesData"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtTitleTesData"
+        app:layout_constraintEnd_toEndOf="@+id/txtTitleTesData"
+        app:layout_constraintStart_toStartOf="@+id/txtTitleTesData"
+        app:layout_constraintTop_toTopOf="@+id/txtTitleTesData" />
+
+    <ProgressBar
+        android:id="@+id/pBTxtAutorData"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtAutorData"
+        app:layout_constraintEnd_toEndOf="@+id/txtAutorData"
+        app:layout_constraintStart_toStartOf="@+id/txtAutorData"
+        app:layout_constraintTop_toTopOf="@+id/txtAutorData" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

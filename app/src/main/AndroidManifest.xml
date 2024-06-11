@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- Permisos -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Acceso a internet -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/imgprincipal"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.WhatWhy"
+        tools:targetApi="31">
+
+        <!-- Pantallas -->
+        <!-- p.Principal -->
+        <activity
+            android:name=".Vistas.Menus.MenuInicioActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!-- p.Inicio sesión -->
+        <activity
+            android:name=".Vistas.GestionUsuarios.InicioSesionActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+        <!-- p.Creación de usuario -->
+        <activity
+            android:name=".Vistas.GestionUsuarios.NuevoUsuarioActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+        <!-- p.Menu principal -->
+        <activity
+            android:name=".Vistas.Menus.MenuPrincipalActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+
+        <!-- p.Lista de test globales -->
+        <activity
+            android:name=".Vistas.Listas.ListaTestActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+        <!-- p.Datos de los test -->
+        <activity
+            android:name=".Vistas.DatosTest"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+        <!-- p.Lista de test favoritos -->
+        <activity
+            android:name=".Vistas.Listas.ListaFavoritosActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Vistas.Listas.ListaMisTestActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Vistas.Listas.ListaPreguntas"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Vistas.RecyPregunta"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Vistas.ResultadosTest"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Vistas.NuevoTestActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Vistas.NuevaPreguntaActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Vistas.GestionUsuarios.CambiarContrasenaActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Vistas.Administracion.GestionUsersActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Vistas.Administracion.GestionReportsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".FormularioReportActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".FormularioBaneoTestActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Vistas.ListaInfoReports"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Vistas.Listas.ListaMensajesActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".Vistas.EditarTestActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
+
+    </application>
+
+</manifest>

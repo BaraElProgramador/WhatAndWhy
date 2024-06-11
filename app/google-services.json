@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "245233555543",
+    "project_id": "whatandwhy-75147",
+    "storage_bucket": "whatandwhy-75147.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245233555543:android:a0d679e50e8744e25fab12",
+        "android_client_info": {
+          "package_name": "com.example.whatwhy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNHZsUl8lpNHJUICuT4l0sXQLPQtBxXbc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

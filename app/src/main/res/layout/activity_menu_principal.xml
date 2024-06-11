@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Menu"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bMisTest"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#F44336"
+        android:text="Mis Gametest"
+        app:cornerRadius="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/bNewTest"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#F44336"
+        android:text="Crear Gametest"
+        app:cornerRadius="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bMisTest" />
+
+    <Button
+        android:id="@+id/bSearchGametest"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#F44336"
+        android:text="Gametest globales"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bNewTest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bNewTest"
+        app:layout_constraintTop_toTopOf="@+id/bNewTest" />
+
+    <Button
+        android:id="@+id/bToFavoritos"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#F44336"
+        android:text="Gametest Favoritos"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bMisTest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bMisTest"
+        app:layout_constraintTop_toTopOf="@+id/bMisTest" />
+
+    <Button
+        android:id="@+id/bListaUsers"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:backgroundTint="#3F51B5"
+        android:text="Administrar usuarios"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bNewTest" />
+
+    <Button
+        android:id="@+id/bListaReports"
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:backgroundTint="#3F51B5"
+        android:text="Administrar reportes"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/bListaUsers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bListaUsers"
+        app:layout_constraintTop_toTopOf="@+id/bListaUsers" />
+
+    <ImageView
+        android:id="@+id/imgMenuUser"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/option_user" />
+
+    <TextView
+        android:id="@+id/notifyNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:text="99"
+        android:textColor="#D91A1A"
+        android:textSize="24sp"
+        android:typeface="serif"
+        app:layout_constraintBottom_toBottomOf="@+id/imgMenuUser"
+        app:layout_constraintEnd_toStartOf="@+id/imgMenuUser" />
+</androidx.constraintlayout.widget.ConstraintLayout>
