@@ -18,7 +18,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class RecyPregunta extends AppCompatActivity {
+public class RecyPreguntaActivity extends AppCompatActivity {
     private TextView titulo;
     private RadioGroup rGroup;
     private RadioButton r1, r2, r3, r4;
@@ -39,13 +39,13 @@ public class RecyPregunta extends AppCompatActivity {
         r3 = (RadioButton) findViewById(R.id.resp3);
         r4 = (RadioButton) findViewById(R.id.resp4);
 
+        //Inicializo la base de datos
         db = FirebaseFirestore.getInstance();
 
-
-        respuestaCorrecta(2);
-
+        //Obtengo los datos
         cargarDatos();
 
+        //Listener para comprobar la respuesta
         rGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -77,6 +77,7 @@ public class RecyPregunta extends AppCompatActivity {
         }
     }
 
+    //Oculta los botones dependiendo de la cantidad de respuestas
     private void ocultarButtons(int totalQ){
         switch(totalQ){
             case 2:
@@ -94,17 +95,18 @@ public class RecyPregunta extends AppCompatActivity {
         }
     }
 
+    //Comprueba la respuesta
     private void comprobarRespuesta(){
         if(correct.isChecked()){
             correct.setTextColor(Color.GREEN);
-            Toast.makeText(RecyPregunta.this, "Correcto", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RecyPreguntaActivity.this, "Correcto", Toast.LENGTH_SHORT).show();
         }else{
             r1.setTextColor(Color.RED);
             r2.setTextColor(Color.RED);
             r3.setTextColor(Color.RED);
             r4.setTextColor(Color.RED);
             correct.setTextColor(Color.GREEN);
-            Toast.makeText(RecyPregunta.this, "Incorrecto", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RecyPreguntaActivity.this, "Incorrecto", Toast.LENGTH_SHORT).show();
         }
         r1.setClickable(false);
         r2.setClickable(false);
@@ -112,9 +114,12 @@ public class RecyPregunta extends AppCompatActivity {
         r4.setClickable(false);
     }
 
+    //Carga los datos
     private void cargarDatos(){
+        //Obtengo el id del proyecto desde el intent
         String projectID = getIntent().getStringExtra("idProyecto");
 
+        //Obtengo la pregunta
         db.collection("proyectos").document(projectID)
                 .collection("preguntas").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -132,15 +137,12 @@ public class RecyPregunta extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(QuerySnapshot responseSnapshots) {
                                         for (DocumentSnapshot responseDoc : responseSnapshots.getDocuments()) {
-                                            // Aquí puedes obtener los datos de cada respuesta
-                                            String respuesta = responseDoc.getString("respuesta");
-
-//                                            int cA = 1 + (int)(Math.random() * ((2 - 1) + 1));
-//                                            respuestaCorrecta(cA);
+                                            //Oculto los botones dependiendo de la cantidad de respuestas
                                             ocultarButtons(responseSnapshots.size());
 
                                             int aux = 0;
 
+                                            //Obtengo las respuestas
                                             for(DocumentSnapshot document : responseSnapshots.getDocuments()){
                                                 aux ++;
                                                 if(document.get("correcta", Boolean.class)){
@@ -160,7 +162,7 @@ public class RecyPregunta extends AppCompatActivity {
                                                         r4.setText(document.getString("texto"));
                                                         break;
                                                     default:
-                                                        Toast.makeText(RecyPregunta.this, "Error", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(RecyPreguntaActivity.this, "Error", Toast.LENGTH_SHORT).show();
                                                         break;
                                                 }
                                             }

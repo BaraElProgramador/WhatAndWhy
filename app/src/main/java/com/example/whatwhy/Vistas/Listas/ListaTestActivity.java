@@ -39,10 +39,13 @@ public class ListaTestActivity extends AppCompatActivity {
         carga = findViewById(R.id.pbListaPro);
         sFiltros = findViewById(R.id.sFiltros);
 
+        //Inicializo el Spinner
         String[] datos = new String[] {"Todos", "Ciencia", "Geografia", "Informática", "Naturaleza", "Literatura"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, datos);
         sFiltros.setAdapter(adapter);
 
+        //Creo el listener para el spinner que gestiona la selección de los filtros
+        // cada vez que se selecciona un filtro se carga el recyclerview
         sFiltros.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -62,6 +65,7 @@ public class ListaTestActivity extends AppCompatActivity {
 
     //Método para cargar la lista de test
     private void cargarListaTest() {
+        //Creo y gestiono la consulta que necesito para cargar los adapters
         Query query = null;
         if(sFiltros.getSelectedItem().toString().equals("Todos")){
             query = db.collection("proyectos").whereEqualTo("activo", true);

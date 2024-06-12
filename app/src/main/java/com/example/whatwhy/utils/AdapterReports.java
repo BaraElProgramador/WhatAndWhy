@@ -13,10 +13,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.whatwhy.FormularioBaneoTestActivity;
+import com.example.whatwhy.Vistas.Formularios.FormularioBaneoTestActivity;
 import com.example.whatwhy.Modelos.Proyecto;
 import com.example.whatwhy.R;
-import com.example.whatwhy.Vistas.DatosTest;
+import com.example.whatwhy.Vistas.DatosTestActivity;
 import com.example.whatwhy.Vistas.ListaInfoReports;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -139,7 +139,7 @@ public class AdapterReports extends FirestoreRecyclerAdapter<Proyecto, AdapterRe
             @Override
             public void onClick(View v) {
                 Context context = holder.itemView.getContext();
-                Intent i = new Intent(v.getContext(), DatosTest.class);
+                Intent i = new Intent(v.getContext(), DatosTestActivity.class);
                 i.putExtra("idProyecto", model.getId());
                 context.startActivity(i);
             }

@@ -8,8 +8,8 @@
     <EditText
         android:id="@+id/txtEditPregunta"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginTop="200dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="150dp"
         android:background="@drawable/outline_text"
         android:ems="10"
         android:gravity="top"

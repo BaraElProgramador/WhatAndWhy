@@ -114,7 +114,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="143dp" />
+            app:layout_constraintGuide_begin="165dp" />
 
         <ProgressBar
             android:id="@+id/pBTCreate"

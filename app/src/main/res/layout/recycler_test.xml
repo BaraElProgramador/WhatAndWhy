@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="222dp" />
+            app:layout_constraintGuide_begin="252dp" />
 
         <TextView
             android:id="@+id/txtNumRealizadas"
@@ -125,7 +125,7 @@
             android:id="@+id/pBTituloTest"
             style="?android:attr/progressBarStyle"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/txtTituloTest"
             app:layout_constraintEnd_toEndOf="@+id/txtTituloTest"
             app:layout_constraintStart_toStartOf="@+id/txtTituloTest"

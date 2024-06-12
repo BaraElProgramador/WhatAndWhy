@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.whatwhy.Vistas.Listas.ListaPreguntas;
+import com.example.whatwhy.Vistas.Listas.ListaPreguntasActivity;
 import com.example.whatwhy.Modelos.Respuestas;
 import com.example.whatwhy.Modelos.Pregunta;
 import com.example.whatwhy.R;
@@ -27,9 +27,9 @@ import java.util.List;
 
 public class AdapterPreguntasDo extends FirestoreRecyclerAdapter<Pregunta, AdapterPreguntasDo.ViewHolder> {
     private String idProyect;
-    private ListaPreguntas clasePreguntas;
+    private ListaPreguntasActivity clasePreguntas;
 
-    public AdapterPreguntasDo(@NonNull FirestoreRecyclerOptions<Pregunta> options, String idProyect, ListaPreguntas clasePreguntas) {
+    public AdapterPreguntasDo(@NonNull FirestoreRecyclerOptions<Pregunta> options, String idProyect, ListaPreguntasActivity clasePreguntas) {
         super(options);
         this.idProyect = idProyect;
         this.clasePreguntas = clasePreguntas;

@@ -45,6 +45,11 @@ public class GestionReportsActivity extends AppCompatActivity {
         //Inicializamos la base de datos de Firestore
         db = FirebaseFirestore.getInstance();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         //Obtenemos los datos de la colección "reportes" donde el estado es "pendiente"
         db.collection("reportes").whereEqualTo("estado", "pendiente").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -63,7 +68,7 @@ public class GestionReportsActivity extends AppCompatActivity {
                         }
 
                         //Verificamos si la lista de ids está vacía
-                        if (ids.isEmpty()) {
+                        if (ids.size() <= 0) {
                             Toast.makeText(GestionReportsActivity.this, "No hay proyectos pendientes.", Toast.LENGTH_SHORT).show();
                             finish();
                             return;

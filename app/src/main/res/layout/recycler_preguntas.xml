@@ -5,12 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imgLsygnal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nextPageQ"
+        app:layout_constraintEnd_toStartOf="@+id/nextPageQ"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nextPageQ"
+        app:srcCompat="@drawable/lsygnal" />
+
     <Button
         android:id="@+id/nextPageQ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:text="Terminar"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -22,7 +33,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="TextView"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/nextPageQ"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -61,5 +72,15 @@
         app:layout_constraintEnd_toStartOf="@+id/txtCorrectA"
         app:layout_constraintStart_toEndOf="@+id/txtPagQ"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgRsygnal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/nextPageQ"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nextPageQ"
+        app:layout_constraintTop_toTopOf="@+id/nextPageQ"
+        app:srcCompat="@drawable/rsignal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

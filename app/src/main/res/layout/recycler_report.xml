@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="203dp" />
+            app:layout_constraintGuide_begin="263dp" />
 
         <TextView
             android:id="@+id/txtInfoEmailReport"
@@ -58,11 +58,10 @@
             android:id="@+id/textView20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
             android:text="Motivo:"
-            app:layout_constraintBottom_toBottomOf="@+id/txtInfoUserReport"
-            app:layout_constraintStart_toEndOf="@+id/txtInfoUserReport"
-            app:layout_constraintTop_toTopOf="@+id/txtInfoUserReport" />
+            app:layout_constraintStart_toStartOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         <TextView
             android:id="@+id/txtInfoMotivoReport"
@@ -84,7 +83,7 @@
             android:layout_marginTop="20dp"
             android:text="Información extra:"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
         <TextView
             android:id="@+id/txtMoreInfoReport"
@@ -115,6 +114,7 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/txtInfoMotivoReport"
             app:layout_constraintEnd_toEndOf="@+id/txtInfoMotivoReport"
             app:layout_constraintStart_toStartOf="@+id/txtInfoMotivoReport"
@@ -125,8 +125,9 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/txtInfoUserReport"
-            app:layout_constraintEnd_toEndOf="@+id/txtInfoUserReport"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/txtInfoUserReport"
             app:layout_constraintTop_toTopOf="@+id/txtInfoUserReport" />
 
@@ -134,7 +135,7 @@
             android:id="@+id/pBInfoEmailReport"
             style="?android:attr/progressBarStyle"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="35dp"
             app:layout_constraintBottom_toBottomOf="@+id/txtInfoEmailReport"
             app:layout_constraintEnd_toEndOf="@+id/txtInfoEmailReport"
             app:layout_constraintStart_toStartOf="@+id/txtInfoEmailReport"

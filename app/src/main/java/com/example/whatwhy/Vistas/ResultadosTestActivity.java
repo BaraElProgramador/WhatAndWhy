@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-public class ResultadosTest extends AppCompatActivity {
+public class ResultadosTestActivity extends AppCompatActivity {
         //Creación de variables
         private TextView txtResult, txtPorcentaje;
         private Button bVolver;
@@ -62,6 +62,7 @@ public class ResultadosTest extends AppCompatActivity {
 
         }
 
+        //Obtengo el porcentaje de preguntas correctas
         private void obtenerPorcentaje(){
             int porcentaje = (result * 100) / total;
             txtPorcentaje.setText(porcentaje + "%");

@@ -53,7 +53,7 @@
             android:screenOrientation="portrait"></activity>
         <!-- p.Datos de los test -->
         <activity
-            android:name=".Vistas.DatosTest"
+            android:name=".Vistas.DatosTestActivity"
             android:exported="true"
             android:screenOrientation="portrait"></activity>
         <!-- p.Lista de test favoritos -->
@@ -68,17 +68,17 @@
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".Vistas.Listas.ListaPreguntas"
+            android:name=".Vistas.Listas.ListaPreguntasActivity"
             android:exported="true"
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".Vistas.RecyPregunta"
+            android:name=".Vistas.RecyPreguntaActivity"
             android:exported="true"
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".Vistas.ResultadosTest"
+            android:name=".Vistas.ResultadosTestActivity"
             android:exported="true"
             android:screenOrientation="portrait"></activity>
 
@@ -108,12 +108,12 @@
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".FormularioReportActivity"
+            android:name=".Vistas.Formularios.FormularioReportActivity"
             android:exported="true"
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".FormularioBaneoTestActivity"
+            android:name=".Vistas.Formularios.FormularioBaneoTestActivity"
             android:exported="true"
             android:screenOrientation="portrait"></activity>
 

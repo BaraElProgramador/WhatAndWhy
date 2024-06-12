@@ -355,34 +355,45 @@ public class EditarTestActivity extends AppCompatActivity {
 
 
 
+    //Función encargada de los datos que seran modificados
     private void cargarDatos(){
+        //Obtengo los datos del proyecto
         db.collection("proyectos").document(proyectoID).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         txtTitulo.setText(documentSnapshot.getString("nombre"));
+
+                        //Obtengo el tema del proyecto y lo coloco tanto en la imagen como la seleccion en el splitter
                         String tema = documentSnapshot.getString("tema");
                         switch (tema) {
                             case "Ciencia":
                                 imgPortada.setImageResource(R.drawable.img_ciencia);
+                                sTema.setSelection(1);
                                 break;
                             case "Geografia":
                                 imgPortada.setImageResource(R.drawable.img_geografia);
+                                sTema.setSelection(2);
                                 break;
                             case "Informática":
                                 imgPortada.setImageResource(R.drawable.img_informatica);
+                                sTema.setSelection(3);
                                 break;
                             case "Naturaleza":
                                 imgPortada.setImageResource(R.drawable.img_naturaleza);
+                                sTema.setSelection(5);
                                 break;
                             case "Literatura":
                                 imgPortada.setImageResource(R.drawable.img_literatura);
+                                sTema.setSelection(4);
                                 break;
                             default:
                                 imgPortada.setImageResource(R.drawable.imgprincipal);
+                                sTema.setSelection(0);
                                 break;
                         }
 
+                        //Obtengo el estado del proyecto y lo coloco en el splitter
                         if (documentSnapshot.getBoolean("activo")) {
                             sEstado.setSelection(1);
                         } else {
@@ -435,6 +446,7 @@ public class EditarTestActivity extends AppCompatActivity {
 
     }
 
+    //Función encargada de cargar los datos en el recycler e inicializar los adaptadores
     private void cargarRecyclers() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         adapter = new AdapterPreguntasMake(EditarTestActivity.this, lista);

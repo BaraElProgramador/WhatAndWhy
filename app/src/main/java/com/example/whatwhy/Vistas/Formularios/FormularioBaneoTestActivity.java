@@ -1,4 +1,4 @@
-package com.example.whatwhy;
+package com.example.whatwhy.Vistas.Formularios;
 
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.whatwhy.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -157,18 +158,24 @@ public class FormularioBaneoTestActivity extends AppCompatActivity {
 
                         //Dependiendo del castigo se le restan puntos al usuario, se le borra el proyecto o se le pone en privado
                         if(resultado <= 0){
-                            banearUsuario();
                             limpiarReports();
                         }else{
-                            if(castigo == 1){
+                            if(castigo - puntos <= 0){
+                                banearUsuario();
                                 documentSnapshot.getReference().update("puntos", documentSnapshot.getLong("puntos") - castigo);
                                 limpiarReports();
-                                db.collection("proyectos").document(proyectoID).update("activo", false);
                             }else{
-                                documentSnapshot.getReference().update("puntos", documentSnapshot.getLong("puntos") - castigo);
-                                limpiarReports();
-                                eliminarProyecto();
+                                if(castigo == 1){
+                                    documentSnapshot.getReference().update("puntos", documentSnapshot.getLong("puntos") - castigo);
+                                    limpiarReports();
+                                    db.collection("proyectos").document(proyectoID).update("activo", false);
+                                }else{
+                                    documentSnapshot.getReference().update("puntos", documentSnapshot.getLong("puntos") - castigo);
+                                    limpiarReports();
+                                    eliminarProyecto();
+                                }
                             }
+
                         }
 
                     }
@@ -240,7 +247,7 @@ public class FormularioBaneoTestActivity extends AppCompatActivity {
                     }
                 });
 
-        db.collection("respuestas").whereEqualTo("userID", userID).get()
+        db.collection("resultados").whereEqualTo("userID", userID).get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -252,6 +259,21 @@ public class FormularioBaneoTestActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(FormularioBaneoTestActivity.this, "Error al borrar de resultados", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        db.collection("reportes").whereEqualTo("userID", userID).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(QueryDocumentSnapshot documentReference : queryDocumentSnapshots) {
+                            documentReference.getReference().delete();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(FormularioBaneoTestActivity.this, "Error al borrar de reportes", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -271,7 +293,7 @@ public class FormularioBaneoTestActivity extends AppCompatActivity {
     private void eliminarProyecto() {
         DocumentReference projectRef = db.collection("proyectos").document(proyectoID);
 
-        // Eliminar preguntas y respuestas asociadas
+        //Eliminar preguntas y respuestas asociadas
         projectRef.collection("preguntas").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

@@ -14,10 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.whatwhy.FormularioReportActivity;
+import com.example.whatwhy.Vistas.Formularios.FormularioReportActivity;
 import com.example.whatwhy.Modelos.Resultado;
 import com.example.whatwhy.R;
-import com.example.whatwhy.Vistas.Listas.ListaPreguntas;
+import com.example.whatwhy.Vistas.Listas.ListaPreguntasActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,7 +33,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DatosTest extends AppCompatActivity {
+public class DatosTestActivity extends AppCompatActivity {
     private TextView txtTitulo, txtAutor, txtScore;
     private ImageView imgPortada, imgLike, imgReport, imgDelete, imgEditTest;
     private ProgressBar pBTxtTitleTesData, pBTxtAutorData, pBImgEditTest, pBImgTestLike;
@@ -66,17 +66,22 @@ public class DatosTest extends AppCompatActivity {
         pBImgTestLike = (ProgressBar) findViewById(R.id.pBImgTestLike);
         bDoTest = (Button) findViewById(R.id.bDoTest);
 
+        //Inicializo la base de datos y el usuario actual
         db = FirebaseFirestore.getInstance();
         userAuth = FirebaseAuth.getInstance().getCurrentUser();
 
+        //Inicializo el like
         imgPortada.setImageResource(R.drawable.imgprincipal);
 
+        //Obtengo el id del proyecto
         proyecID = getIntent().getStringExtra("idProyecto");
 
+        //Cargo los datos
         cargarDatos();
 
         cargarScore();
 
+        //Listener para cambiar el like
         imgLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,28 +89,31 @@ public class DatosTest extends AppCompatActivity {
             }
         });
 
+        //Listener para ir al formulario de reportes
         imgReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DatosTest.this, FormularioReportActivity.class);
+                Intent i = new Intent(DatosTestActivity.this, FormularioReportActivity.class);
                 i.putExtra("idProyecto", proyecID);
                 startActivity(i);
             }
         });
 
+        //Listener para editar el proyecto
         imgEditTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DatosTest.this, EditarTestActivity.class);
+                Intent i = new Intent(DatosTestActivity.this, EditarTestActivity.class);
                 i.putExtra("proyectoID", proyecID);
                 startActivity(i);
             }
         });
 
+        //Listener para eliminar el proyecto
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(DatosTest.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(DatosTestActivity.this);
                 builder.setTitle("Eliminar Proyecto");
                 builder.setMessage("¿Estás seguro de que deseas eliminar este proyecto?");
                 builder.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
@@ -125,10 +133,11 @@ public class DatosTest extends AppCompatActivity {
             }
         });
 
+        //Listener para ir al formulario de preguntas
         bDoTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(DatosTest.this, ListaPreguntas.class);
+                Intent i = new Intent(DatosTestActivity.this, ListaPreguntasActivity.class);
                 i.putExtra("idProyecto", proyecID);
                 startActivity(i);
             }
@@ -138,12 +147,13 @@ public class DatosTest extends AppCompatActivity {
 
     //Carga los datos del proyecto
     private void cargarDatos(){
-
-
+        //Obtengo los datos del proyecto
         db.collection("proyectos").document(proyecID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot proyectoSnapshot) {
+                //Verifico que el proyecto exista
                 if (proyectoSnapshot.exists()) {
+                    //Obtengo los datos del proyecto
                     txtTitulo.setText(proyectoSnapshot.getString("nombre"));
                     pBTxtTitleTesData.setVisibility(View.GONE);
                     txtTitulo.setVisibility(View.VISIBLE);
@@ -152,13 +162,16 @@ public class DatosTest extends AppCompatActivity {
                     String creatorID = proyectoSnapshot.getString("userID");
                     creator = proyectoSnapshot.get("userID", String.class);
 
+                    //Obtengo la imagen del tema
                     cargarImagen(proyectoSnapshot.getString("tema"));
 
+                    //Verifico si el usuario es el creador del proyecto para mostrar los botones
                     if(userID.equals(creatorID)){
                         imgEditTest.setVisibility(View.VISIBLE);
                         imgDelete.setVisibility(View.VISIBLE);
                     }
 
+                    //Obtengo el nombre del creador del proyecto
                     db.collection("usuarios").document(creatorID).get()
                                     .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                         @Override
@@ -169,41 +182,39 @@ public class DatosTest extends AppCompatActivity {
                                         }
                                     });
 
+                    //Obtengo los datos del usuario actual
                     db.collection("usuarios").document(userID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot usuarioSnapshot) {
                             verificarLike(usuarioSnapshot.getId(), proyecID, new VerificarLikeCallback() {
                                 @Override
                                 public void onCallback(boolean favoritoExiste) {
+                                    //Obtengo el estado del like
                                     refreshLike(favoritoExiste);
                                     pBImgTestLike.setVisibility(View.GONE);
                                     imgLike.setVisibility(View.VISIBLE);
 
                                 }
                             });
+                            //Verifico si el usuario es administrador para mostrar el botón de eliminar
                             if (usuarioSnapshot.exists()) {
                                 if(usuarioSnapshot.get("rol").toString().equals("1")){
                                     imgDelete.setVisibility(View.VISIBLE);
                                 }
 
                             } else {
-                                Toast.makeText(DatosTest.this, "El usuario no existe", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DatosTestActivity.this, "El usuario no existe", Toast.LENGTH_SHORT).show();
                             }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(DatosTest.this, "Error al cargar el usuario: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
-                    Toast.makeText(DatosTest.this, "El proyecto no existe", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DatosTestActivity.this, "El proyecto no existe", Toast.LENGTH_SHORT).show();
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(DatosTest.this, "Error al cargar el proyecto: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(DatosTestActivity.this, "Error al cargar el proyecto: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -253,6 +264,7 @@ public class DatosTest extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         cargarScore();
+        cargarDatos();
     }
 
     @Override
@@ -262,9 +274,57 @@ public class DatosTest extends AppCompatActivity {
 
     //Elimina el proyecto y sus preguntas y respuestas
     private void eliminarProyecto() {
+        //Elimino los favoritos del proyecto
+        db.collection("favoritos").whereEqualTo("projectId", proyecID).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(QueryDocumentSnapshot documentReference : queryDocumentSnapshots) {
+                            documentReference.getReference().delete();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(DatosTestActivity.this, "Error al borrar de favoritos", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        //Elimino los resultados del proyecto
+        db.collection("resultados").whereEqualTo("projectID", proyecID).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(QueryDocumentSnapshot documentReference : queryDocumentSnapshots) {
+                            documentReference.getReference().delete();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(DatosTestActivity.this, "Error al borrar de resultados", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        //Elimino los reportes del proyecto
+        db.collection("reportes").whereEqualTo("projectID", proyecID).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for(QueryDocumentSnapshot documentReference : queryDocumentSnapshots) {
+                            documentReference.getReference().delete();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(DatosTestActivity.this, "Error al borrar de favoritos", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
         DocumentReference projectRef = db.collection("proyectos").document(proyecID);
 
-        // Eliminar preguntas y respuestas asociadas
+        //Eliminar preguntas y respuestas asociadas
         projectRef.collection("preguntas").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -295,18 +355,18 @@ public class DatosTest extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            Toast.makeText(DatosTest.this, "Proyecto eliminado con éxito", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DatosTestActivity.this, "Proyecto eliminado con éxito", Toast.LENGTH_SHORT).show();
                                             finish();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(DatosTest.this, "Error al eliminar el proyecto: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DatosTestActivity.this, "Error al eliminar el proyecto: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     });
                         } else {
-                            Toast.makeText(DatosTest.this, "Error al obtener las preguntas: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DatosTestActivity.this, "Error al obtener las preguntas: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -376,11 +436,11 @@ public class DatosTest extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             // No inviertas el valor de like aquí
-                            Toast.makeText(DatosTest.this, "Error al guardar el favorito: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DatosTestActivity.this, "Error al guardar el favorito: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         } else {
-            // Si el like se desactiva, elimina el documento de favoritos
+            //Si el like se desactiva, elimina el documento de favoritos
             db.collection("favoritos").whereEqualTo("userId", userAuth.getUid()).whereEqualTo("projectId", proyecID)
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -395,12 +455,13 @@ public class DatosTest extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(DatosTest.this, "Error al eliminar el favorito: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DatosTestActivity.this, "Error al eliminar el favorito: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }
     }
 
+    //Actualizo el like
     private void refreshLike(@NonNull Boolean newLike) {
         like = newLike;
         if(like){
@@ -410,6 +471,7 @@ public class DatosTest extends AppCompatActivity {
         }
     }
 
+    //Verifica si el proyecto ya está en favoritos
     private void verificarLike(String userId, String projectId, VerificarLikeCallback callback) {
         //Toast.makeText(DataTest.this, userId, Toast.LENGTH_SHORT).show();
         db.collection("favoritos")
@@ -431,7 +493,7 @@ public class DatosTest extends AppCompatActivity {
                 });
     }
 
-    // Interfaz de devolución de llamada para verificar si el favorito existe
+    //Interfaz de devolución de llamada para verificar si el favorito existe
     private interface VerificarLikeCallback {
         void onCallback(boolean favoritoExiste);
     }
