@@ -50,9 +50,6 @@ public class ListaPreguntasActivity extends AppCompatActivity {
 
         preguntasCorrectas = 0;
 
-        //Inicializacion de variables
-//        viewPager = findViewById(R.id.viewPager);
-//        nextButton = findViewById(R.id.nextButton);
 
         idProyecto = getIntent().getStringExtra("idProyecto");
         db = FirebaseFirestore.getInstance();

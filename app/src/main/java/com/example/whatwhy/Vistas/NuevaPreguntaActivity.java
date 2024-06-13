@@ -35,8 +35,6 @@ public class NuevaPreguntaActivity extends AppCompatActivity {
         txtR3 = findViewById(R.id.txtEditR3);
         txtR4 = findViewById(R.id.txtEditR4);
 
-        txtR4.setEnabled(false);
-
         grupOpciones = findViewById(R.id.rGrupOpciones);
 
         r1 = findViewById(R.id.rBEditR1);
