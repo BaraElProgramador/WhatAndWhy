@@ -89,10 +89,10 @@ public class ListaMisTestActivity extends AppCompatActivity {
         //Esta consulta busca en la tabla "proyectos" los proyectos que pertenecen al usuario actual
         Query query = null;
         if(filtro.getSelectedItem().toString().equals("Todos")){
-            query = db.collection("proyectos").whereEqualTo("activo", true).whereEqualTo("userID", fUser.getUid());
+            query = db.collection("proyectos").whereEqualTo("userID", fUser.getUid());
         }else{
             String tema = filtro.getSelectedItem().toString();
-            query = db.collection("proyectos").whereEqualTo("activo", true).whereEqualTo("tema", tema).whereEqualTo("userID", fUser.getUid());
+            query = db.collection("proyectos").whereEqualTo("tema", tema).whereEqualTo("userID", fUser.getUid());
         }
 
         //Creamos el options que sera el encargado de cargar los datos necesarios al recyclerview

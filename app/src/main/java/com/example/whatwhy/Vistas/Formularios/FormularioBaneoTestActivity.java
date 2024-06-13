@@ -159,22 +159,21 @@ public class FormularioBaneoTestActivity extends AppCompatActivity {
                         //Dependiendo del castigo se le restan puntos al usuario, se le borra el proyecto o se le pone en privado
                         if(resultado <= 0){
                             limpiarReports();
+                            documentSnapshot.getReference().update("puntos", documentSnapshot.getLong("puntos") - castigo);
+                            banearUsuario();
                         }else{
-                            if(castigo - puntos <= 0){
-                                banearUsuario();
+                            if (castigo == 1) {
+                                limpiarReports();
+                                documentSnapshot.getReference().update("puntos", documentSnapshot.getLong("puntos") - castigo);
+                                Toast.makeText(FormularioBaneoTestActivity.this, "JJJJJ", Toast.LENGTH_SHORT).show();
+                                db.collection("proyectos").document(proyectoID).update("activo", false);
+                            }
+                            if (castigo > 1) {
                                 documentSnapshot.getReference().update("puntos", documentSnapshot.getLong("puntos") - castigo);
                                 limpiarReports();
-                            }else{
-                                if(castigo == 1){
-                                    documentSnapshot.getReference().update("puntos", documentSnapshot.getLong("puntos") - castigo);
-                                    limpiarReports();
-                                    db.collection("proyectos").document(proyectoID).update("activo", false);
-                                }else{
-                                    documentSnapshot.getReference().update("puntos", documentSnapshot.getLong("puntos") - castigo);
-                                    limpiarReports();
-                                    eliminarProyecto();
-                                }
+                                eliminarProyecto();
                             }
+
 
                         }
 

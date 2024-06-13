@@ -1,7 +1,10 @@
 package com.example.whatwhy.Vistas.Listas;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +27,8 @@ public class ListaMensajesActivity extends AppCompatActivity {
     //Creación de variables
     private RecyclerView recyclerView;
     private ProgressBar carga;
+    private Spinner filtro;
+    private TextView txtFiltro;
 
     private AdapterMensajes adapter;
     private FirebaseFirestore db;
@@ -38,6 +43,10 @@ public class ListaMensajesActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerActivity);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         carga = findViewById(R.id.pbListaPro);
+        filtro = findViewById(R.id.sFiltros);
+        txtFiltro = findViewById(R.id.txtFiltro);
+        txtFiltro.setVisibility(View.GONE);
+        filtro.setVisibility(Spinner.GONE);
 
         db = FirebaseFirestore.getInstance();
         fUser = FirebaseAuth.getInstance();
