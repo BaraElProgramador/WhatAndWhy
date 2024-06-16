@@ -42,12 +42,11 @@ public class CambiarContrasenaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Si no esta vacio llama al metodo de cambiar la contraseña
-                if(!txtEmail.getText().toString().trim().equals("")){
+                if (!txtEmail.getText().toString().trim().equals("")) {
                     cambiarContrasena();
-                }else{
+                } else {
                     Toast.makeText(CambiarContrasenaActivity.this, "Debe escribir un correo electrónico válido", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }

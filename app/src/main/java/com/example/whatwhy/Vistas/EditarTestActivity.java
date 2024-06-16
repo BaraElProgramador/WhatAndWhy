@@ -144,8 +144,12 @@ public class EditarTestActivity extends AppCompatActivity {
         bCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(tieneContenido()){
-                    editarProyecto();
+                if(txtTitulo.getText().toString().trim().length() <= 28){
+                    if(tieneContenido()){
+                        editarProyecto();
+                    }
+                }else{
+                    Toast.makeText(EditarTestActivity.this, "El título no puede tener más de 28 caracteres", Toast.LENGTH_SHORT).show();
                 }
             }
         });

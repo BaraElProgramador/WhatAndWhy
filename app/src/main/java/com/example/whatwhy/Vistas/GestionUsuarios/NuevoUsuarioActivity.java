@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NuevoUsuarioActivity extends AppCompatActivity {
-    // Creación de variables
+    //Creación de variables
     TextView txtEmail, txtNick, txtPass;
     Button bCreate, bCancel;
 
@@ -37,7 +37,7 @@ public class NuevoUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_usuario);
 
-        // Declaración de variables
+        //Declaración de variables
         txtEmail = findViewById(R.id.txtNewUserEmail);
         txtNick = findViewById(R.id.txtNewUserNick);
         txtPass = findViewById(R.id.txtNewUserPass);
@@ -47,34 +47,48 @@ public class NuevoUsuarioActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
-        // Listeners de los botones
+        //Listeners de los botones
         bCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Se comprueba que el email sea válido
                 String email = txtEmail.getText().toString().trim();
-                String nick = txtNick.getText().toString().trim();
-                String pass = txtPass.getText().toString().trim();
-
-                // Comprueba que ninguno de los 3 está vacío
-                if (!email.isEmpty() && !nick.isEmpty() && !pass.isEmpty()) {
-                    // Verifica si el usuario ya existe
-                    verificarUsuario(nick, new VerificarUsuarioCallback() {
-                        @Override
-                        public void onCallback(boolean existeUsuario) {
-                            if (!existeUsuario) {
-                                if (pass.length() >= 6) {
-                                    registrarUsuario(email, nick, pass);
-                                } else {
-                                    Toast.makeText(NuevoUsuarioActivity.this, "La contraseña debe tener 6 o más caracteres", Toast.LENGTH_SHORT).show();
-                                }
+                if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    Toast.makeText(NuevoUsuarioActivity.this, "Debe escribir un correo electrónico válido", Toast.LENGTH_SHORT).show();
+                }else{
+                    //Se comprueba que el nombre de usuario sea válido
+                    String nick = txtNick.getText().toString().trim();
+                    if(nick.length() >= 4 && nick.length() <= 10 && comprobarCaracteres(nick)){
+                        //Se comprueba que la contraseña sea válida
+                        String pass = txtPass.getText().toString().trim();
+                        if(pass.length() >= 6 && pass.length() <= 10){
+                            //Comprueba que ninguno de los 3 está vacío
+                            if (!email.isEmpty() && !nick.isEmpty() && !pass.isEmpty()) {
+                                //Verifica si el usuario ya existe
+                                verificarUsuario(nick, new VerificarUsuarioCallback() {
+                                    @Override
+                                    public void onCallback(boolean existeUsuario) {
+                                        if (!existeUsuario) {
+                                            if (pass.length() >= 6) {
+                                                registrarUsuario(email, nick, pass);
+                                            } else {
+                                                Toast.makeText(NuevoUsuarioActivity.this, "La contraseña debe tener 6 o más caracteres", Toast.LENGTH_SHORT).show();
+                                            }
+                                        } else {
+                                            Toast.makeText(NuevoUsuarioActivity.this, "El email o el nombre de usuario ya existe", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                             } else {
-                                Toast.makeText(NuevoUsuarioActivity.this, "El email o el nombre de usuario ya existe", Toast.LENGTH_SHORT).show();
+                                // Indica que una de las celdas está vacía
+                                Toast.makeText(NuevoUsuarioActivity.this, "No se ha podido crear el usuario, una de las celdas está vacía.", Toast.LENGTH_SHORT).show();
                             }
+                        }else{
+                            Toast.makeText(NuevoUsuarioActivity.this, "La contraseña debe tener entre 6 y 16 caracteres", Toast.LENGTH_SHORT).show();
                         }
-                    });
-                } else {
-                    // Indica que una de las celdas está vacía
-                    Toast.makeText(NuevoUsuarioActivity.this, "No se ha podido crear el usuario, una de las celdas está vacía.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(NuevoUsuarioActivity.this, "El nickName tiene que tener entre 4 y 10 caracteres y solo letras", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
@@ -85,6 +99,20 @@ public class NuevoUsuarioActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    //Función para comprobar que el nombre de usuario solo contenga letras de la "a" a la "z"
+    private boolean comprobarCaracteres(String texto){
+        boolean letras = true;
+
+        for(char c : texto.toCharArray()){
+            if(!Character.isLetter(c)){
+                letras = false;
+                break;
+            }
+        }
+
+        return letras;
     }
 
     private void verificarUsuario(String nombreUsuario, VerificarUsuarioCallback callback) {

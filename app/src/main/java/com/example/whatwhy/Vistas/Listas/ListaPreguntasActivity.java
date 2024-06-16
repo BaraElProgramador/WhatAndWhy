@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,16 +65,7 @@ public class ListaPreguntasActivity extends AppCompatActivity {
                 //Se actualiza el numero de la pagina
                 txtPage.setText(String.valueOf(position + 1) + "/" + String.valueOf(totalPreguntas));
                 //Muestra o esconde las imagenes de siguiente o anterior
-                if (position == 0) {
-                    imgLsygnal.setVisibility(View.GONE);
-                    imgRsygnal.setVisibility(View.VISIBLE);
-                } else if (position == totalPreguntas - 1) {
-                    imgLsygnal.setVisibility(View.VISIBLE);
-                    imgRsygnal.setVisibility(View.GONE);
-                } else {
-                    imgLsygnal.setVisibility(View.VISIBLE);
-                    imgRsygnal.setVisibility(View.VISIBLE);
-                }
+                esconderBotones(position);
             }
         });
 
@@ -135,6 +127,24 @@ public class ListaPreguntasActivity extends AppCompatActivity {
     }
 
 
+    private void esconderBotones(int position){
+        if(totalPreguntas == 1){
+            imgLsygnal.setVisibility(View.GONE);
+            imgRsygnal.setVisibility(View.GONE);
+        }else {
+            if (position == 0) {
+                imgLsygnal.setVisibility(View.GONE);
+                imgRsygnal.setVisibility(View.VISIBLE);
+            } else if (position == totalPreguntas - 1) {
+                imgLsygnal.setVisibility(View.VISIBLE);
+                imgRsygnal.setVisibility(View.GONE);
+            } else {
+                imgLsygnal.setVisibility(View.VISIBLE);
+                imgRsygnal.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
 
     //Carga los datos de las preguntas
     private void cargarDatosProyecto(){
@@ -147,6 +157,7 @@ public class ListaPreguntasActivity extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 //Obtiene el total de preguntas
                 totalPreguntas = queryDocumentSnapshots.size();
+                esconderBotones(0);
                 txtPage.setText(String.valueOf(1) + "/" + String.valueOf(totalPreguntas));
             }
         });
